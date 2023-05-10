@@ -13,11 +13,25 @@
             "MatheusRosa\\PhpInteractor\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "authors": [
         {
             "name": "Matheus Rosa",
             "email": "matheus.alves.rosa@outlook.com"
         }
     ],
-    "require": {}
+    "config": {
+        "process-timeout": 0,
+        "sort-packages": true
+    },
+    "require": {
+        "php": ">=5.4"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    }
 }
