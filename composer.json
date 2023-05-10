@@ -1,0 +1,23 @@
+{
+    "name": "matheus-rosa/php-interactor",
+    "type": "library",
+    "description": "A single purpose object library built for PHP",
+    "keywords": [
+        "interactor",
+        "single-purpose",
+        "single-purpose object",
+        "solid"
+    ],
+    "autoload": {
+        "psr-4": {
+            "MatheusRosa\\PhpInteractor\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Matheus Rosa",
+            "email": "matheus.alves.rosa@outlook.com"
+        }
+    ],
+    "require": {}
+}
