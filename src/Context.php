@@ -24,11 +24,17 @@ class Context
         $this->setParams($params);
     }
 
+    /**
+     * @return bool
+     */
     public function success()
     {
         return empty($this->errors);
     }
 
+    /**
+     * @return bool
+     */
     public function failure()
     {
         return !empty($this->errors);
