@@ -70,6 +70,9 @@ SaveUser::call([
 **Note** we have just passed an array as an argument to the static `call` method. You can pass any values to your associative array
 or even leaving it as blank (not passing anything to it at all, e.g. `SaveUser::call()`).
 
+**Note 2**: think of `call` method as a public API while `execute` method is how your business logic will be handled internally.
+Each `Interactor` needs to implement the `execute` method.
+
 You can retrieve the informed parameters in your `SaveUser` class like this:
 
 ```php
@@ -88,11 +91,66 @@ class SaveUser
         var_dump($context->name, $context->email);
         
         // You can even create brand-new values and assign them to the current context
-        $context->currentTime = time(); 
+        $context->currentTime = time();
+        
+        $context->user = new User($context->name, $context->email);
+        $context->user->save();
     }
 }
 ```
 
+### Checking Interactor success
+
+If an Interactor does not call the `fail` method with an error message, it is considered as a success scenario.
+
+You can check if by invoking the `success` method from the returned context:
+
+```php
+<?php
+
+$context = SaveUser::call([
+    'name' => 'John Doe',
+    'email' => 'john.doe@email.com',
+]);
+
+$context->success(); // returns either true or false
+```
+
+### Failing an Interactor
+
+Interactors can be set as failure like this:
+
+```php
+
+use MatheusRosa\PhpInteractor\Interactable;
+use MatheusRosa\PhpInteractor\Context;
+
+class SaveUser
+{
+    use Interactable;
+    
+    protected function execute(Context $context)
+    {
+        $context->user = new User($context->name, $context->email);
+        
+        if (!$context->user->save()) {
+            $context->fail('custom error message | model error message');
+        }
+    }
+}
+```
+
+Once the `fail` method is invoked **the execution flow will immediately stop**. That means any code after the `if` condition in the example above
+will become unreachable.
+
+By default, the `fail` method does not throw any exception though you can change its behavior by setting its second argument (`$strict`)
+as true:
+
+```php
+$context->fail('an error message', true);
+```
+
+That way, from now on the `ContextFailureException` will be raised.
 
 ### The Context
 
