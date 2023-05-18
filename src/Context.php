@@ -61,7 +61,11 @@ class Context
 
     public function __get($name)
     {
-        return $this->params[$name] ?: null;
+        if (isset($this->params[$name])) {
+            return $this->params[$name];
+        }
+
+        return null;
     }
 
     public function __set($name, $value)
