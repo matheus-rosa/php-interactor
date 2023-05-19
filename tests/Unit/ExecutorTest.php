@@ -19,7 +19,7 @@ final class ExecutorTest extends TestCase
             }
         };
 
-        $inputContext = new Context;
+        $inputContext = new Context();
         $outputContext = $class::call($inputContext);
 
         $this->assertInstanceOf(Context::class, $outputContext);
@@ -53,7 +53,9 @@ final class ExecutorTest extends TestCase
         $class = new class {
             use Executor;
 
-            protected function perform(Context $context) {}
+            protected function perform(Context $context)
+            {
+            }
         };
 
         $class::call(null);
@@ -66,7 +68,7 @@ final class ExecutorTest extends TestCase
 
             protected function perform(Context $context)
             {
-                $context->currentDate = new \DateTime;
+                $context->currentDate = new \DateTime();
             }
         };
 

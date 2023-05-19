@@ -25,13 +25,13 @@ final class ContextTest extends TestCase
 
     public function testSuccess()
     {
-        $context = new Context;
+        $context = new Context();
         $this->assertIsBool($context->success(), 'A bool value is expected');
     }
 
     public function testFailure()
     {
-        $context = new Context;
+        $context = new Context();
         $this->assertIsBool($context->failure(), 'A bool value is expected');
     }
 
@@ -39,9 +39,13 @@ final class ContextTest extends TestCase
     {
         $this->expectException(ContextFailureException::class);
 
-        $context = new Context;
+        $context = new Context();
         $context->fail('something went wrong');
-        $this->assertEquals(['something went wrong'], $context->errors(), 'The error array does not match the expected');
+        $this->assertEquals(
+            ['something went wrong'],
+            $context->errors(),
+            'The error array does not match the expected'
+        );
         $this->assertFalse($context->strictMode, 'strictMode should be false');
     }
 
@@ -49,9 +53,13 @@ final class ContextTest extends TestCase
     {
         $this->expectException(ContextFailureException::class);
 
-        $context = new Context;
+        $context = new Context();
         $context->fail('something went wrong', true);
-        $this->assertEquals(['something went wrong'], $context->errors(), 'The error array does not match the expected');
+        $this->assertEquals(
+            ['something went wrong'],
+            $context->errors(),
+            'The error array does not match the expected'
+        );
         $this->assertTrue($context->strictMode, 'strictMode should be true');
     }
 }

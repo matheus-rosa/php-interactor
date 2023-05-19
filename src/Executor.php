@@ -14,7 +14,7 @@ trait Executor
     public static function call($params = [])
     {
         $context = $params instanceof Context ? $params : new Context($params);
-        $instance = new self;
+        $instance = new self();
 
         try {
             $aroundOutput = $instance->around($context);
@@ -34,7 +34,7 @@ trait Executor
         return $context;
     }
 
-    protected abstract function perform(Context $context);
+    abstract protected function perform(Context $context);
 
     /**
      * @param Context $context

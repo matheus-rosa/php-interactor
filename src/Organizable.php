@@ -24,5 +24,5 @@ trait Organizable
     /**
      * @return array
      */
-    protected abstract function organize();
+    abstract protected function organize();
 }

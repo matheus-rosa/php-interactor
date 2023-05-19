@@ -15,5 +15,5 @@ trait Interactable
      * @param Context $context
      * @return Context
      */
-    protected abstract function execute(Context $context);
+    abstract protected function execute(Context $context);
 }

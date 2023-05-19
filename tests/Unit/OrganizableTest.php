@@ -3,36 +3,11 @@
 namespace Tests\Unit;
 
 use MatheusRosa\PhpInteractor\Context;
-use MatheusRosa\PhpInteractor\Interactable;
 use MatheusRosa\PhpInteractor\Organizable;
 use PHPUnit\Framework\TestCase;
-
-class TrimString {
-    use Interactable;
-
-    protected function execute(Context $context)
-    {
-        $context->rawUsername = trim($context->rawUsername);
-    }
-}
-
-class ExtractUsername {
-    use Interactable;
-
-    protected function execute(Context $context)
-    {
-        $pieces = explode('@', $context->rawUsername);
-
-        if (!empty($pieces)) {
-            $context->username = $pieces[0];
-        }
-    }
-}
-
-class InvalidInteractor
-{
-    protected function execute(Context $context) {}
-}
+use Tests\Support\Interactors\ExtractUsername;
+use Tests\Support\Interactors\InvalidInteractor;
+use Tests\Support\Interactors\TrimString;
 
 final class OrganizableTest extends TestCase
 {
