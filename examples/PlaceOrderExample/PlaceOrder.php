@@ -18,14 +18,14 @@ class PlaceOrder
         if (!$this->isInputOrderValid($orderAttributes) || !$this->isCustomerEmailValid($customerEmail)) {
             // the pipeline defined in the `organize` method
             // WILL NOT run.
-            echo 'the ' . __CLASS__ . ' Organizer will not run' . PHP_EOL;
+            echo 'the '. __CLASS__ .' Organizer will not run'.PHP_EOL;
 
             return false;
         }
 
         // the pipeline defined in the `organize` method
         // WILL run.
-        echo 'the ' . __CLASS__ . ' Organizer will run' . PHP_EOL;
+        echo 'the '.__CLASS__.' Organizer will run'.PHP_EOL;
 
         return true;
     }
@@ -42,11 +42,11 @@ class PlaceOrder
 
     private function isInputOrderValid($orderAttributes)
     {
-        if (!is_array($orderAttributes) || empty($orderAttributes)) {
+        if (!\is_array($orderAttributes) || empty($orderAttributes)) {
             return false;
         }
 
-        if (empty($orderAttributes['items']) || !is_array($orderAttributes['items'])) {
+        if (empty($orderAttributes['items']) || !\is_array($orderAttributes['items'])) {
             return false;
         }
 
@@ -63,7 +63,7 @@ class PlaceOrder
 
     private function isCustomerEmailValid($customerEmail)
     {
-        if (!is_string($customerEmail) || trim($customerEmail) === '') {
+        if (!\is_string($customerEmail) || trim($customerEmail) === '') {
             return false;
         }
 
