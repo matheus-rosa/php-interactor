@@ -75,7 +75,7 @@ class Context
 
     private function setParams($params)
     {
-        if (!empty($params)) {
+        if (is_array($params) && !empty($params)) {
             $this->params = $params;
         }
     }
