@@ -9,6 +9,56 @@ use PHPUnit\Framework\TestCase;
 
 final class ExecutorTest extends TestCase
 {
+    public function testCallWithContextAsArgument()
+    {
+        $class = new class {
+            use Executor;
+
+            protected function perform(Context $context)
+            {
+            }
+        };
+
+        $inputContext = new Context;
+        $outputContext = $class::call($inputContext);
+
+        $this->assertInstanceOf(Context::class, $outputContext);
+        $this->assertEquals($inputContext, $outputContext);
+        $this->assertTrue($outputContext->success());
+        $this->assertFalse($outputContext->failure());
+    }
+
+    public function testCallWithArrayAsArgument()
+    {
+        $class = new class {
+            use Executor;
+
+            protected function perform(Context $context)
+            {
+            }
+        };
+
+        $context = $class::call(['foo' => 'bar']);
+
+        $this->assertInstanceOf(Context::class, $context);
+        $this->assertEquals('bar', $context->foo);
+        $this->assertTrue($context->success());
+        $this->assertFalse($context->failure());
+    }
+
+    public function testCallWithUnexpectedArgument()
+    {
+        $this->expectException(\TypeError::class);
+
+        $class = new class {
+            use Executor;
+
+            protected function perform(Context $context) {}
+        };
+
+        $class::call(null);
+    }
+
     public function testCallWithoutParamsAndCreatingContextVariablesOnTheFly()
     {
         $class = new class {
