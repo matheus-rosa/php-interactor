@@ -4,7 +4,6 @@ namespace Examples\PlaceOrderExample;
 
 use MatheusRosa\PhpInteractor\Context;
 use MatheusRosa\PhpInteractor\Organizable;
-use PHPUnit\TextUI\XmlConfiguration\ValidationResult;
 
 class PlaceOrder
 {
@@ -29,7 +28,6 @@ class PlaceOrder
 
         return true;
     }
-
 
     protected function organize()
     {
