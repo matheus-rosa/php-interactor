@@ -1,0 +1,41 @@
+name: Linter with PHPCS for PSR 12
+
+on: [ pull_request, push ]
+
+jobs:
+  test:
+    name: PHP ${{ matrix.php-version }} - ${{ matrix.os }} - ${{ github.event_name }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        php-version: [7.4, 8.0, 8.1]
+        os: [ubuntu-latest, windows-latest, macOS-latest]
+
+    steps:
+      - name: Set git line endings
+        if: ${{ matrix.os == 'windows-latest' }}
+        run: |
+          git config --system core.autocrlf false
+          git config --system core.eol lf
+
+      - uses: actions/checkout@v3
+
+      - uses: shivammathur/setup-php@1a18b2267f80291a81ca1d33e7c851fe09e7dfc4
+        with:
+          php-version: ${{ matrix.php-version }}
+          extensions: gmp
+          tools: composer
+
+      - name: Install dependencies
+        shell: bash
+        run: |
+          curl -Lo bin/phpcs.phar https://squizlabs.github.io/PHP_CodeSniffer/phpcs.phar
+          chmod +x bin/phpcs.phar
+
+      - name: Install composer packages
+        run: composer install
+
+      - name: Lint exercises
+        shell: bash
+        run: composer lint:check
