@@ -18,7 +18,7 @@ class PlaceOrder
         if (!$this->isInputOrderValid($orderAttributes) || !$this->isCustomerEmailValid($customerEmail)) {
             // the pipeline defined in the `organize` method
             // WILL NOT run.
-            echo 'the '. __CLASS__ .' Organizer will not run'.PHP_EOL;
+            echo 'the '.__CLASS__.' Organizer will not run'.PHP_EOL;
 
             return false;
         }
