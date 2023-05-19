@@ -9,6 +9,11 @@ class ExtractUsername
 {
     use Interactable;
 
+    public function rollback(Context $context)
+    {
+        $context->username = null;
+    }
+
     protected function execute(Context $context)
     {
         $pieces = explode('@', $context->rawUsername);
