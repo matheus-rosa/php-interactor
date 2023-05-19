@@ -11,7 +11,7 @@ final class ExecutorTest extends TestCase
 {
     public function testCallWithContextAsArgument()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -30,7 +30,7 @@ final class ExecutorTest extends TestCase
 
     public function testCallWithArrayAsArgument()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -50,7 +50,7 @@ final class ExecutorTest extends TestCase
     {
         $this->expectException(\TypeError::class);
 
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -63,7 +63,7 @@ final class ExecutorTest extends TestCase
 
     public function testCallWithoutParamsAndCreatingContextVariablesOnTheFly()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -82,7 +82,7 @@ final class ExecutorTest extends TestCase
 
     public function testCallWithParamsAndModifyingThem()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -106,7 +106,7 @@ final class ExecutorTest extends TestCase
 
     public function testFailingContextWithoutStrictMode()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -126,7 +126,7 @@ final class ExecutorTest extends TestCase
     {
         $this->expectException(ContextFailureException::class);
 
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function perform(Context $context)
@@ -144,7 +144,7 @@ final class ExecutorTest extends TestCase
 
     public function testSkipExecutionOnAroundMethod()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function around(Context $context)
@@ -165,7 +165,7 @@ final class ExecutorTest extends TestCase
 
     public function testDoNotSkipInAroundMethod()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function around(Context $context)
@@ -186,7 +186,7 @@ final class ExecutorTest extends TestCase
 
     public function testBeforeMethod()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function before(Context $context)
@@ -207,7 +207,7 @@ final class ExecutorTest extends TestCase
 
     public function testBeforeMethodWithAround()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function around(Context $context)
@@ -233,7 +233,7 @@ final class ExecutorTest extends TestCase
 
     public function testAfterMethod()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function after(Context $context)
@@ -253,7 +253,7 @@ final class ExecutorTest extends TestCase
 
     public function testAfterMethodWithAround()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function around(Context $context)
@@ -278,7 +278,7 @@ final class ExecutorTest extends TestCase
 
     public function testAfterMethodWithAroundAndBefore()
     {
-        $class = new class {
+        $class = new class() {
             use Executor;
 
             protected function around(Context $context)

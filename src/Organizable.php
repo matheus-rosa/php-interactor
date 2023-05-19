@@ -13,7 +13,7 @@ trait Organizable
         $pipeline = $this->organize();
 
         foreach ($pipeline as $interactor) {
-            if (!in_array(Interactable::class, class_uses($interactor), true)) {
+            if (!\in_array(Interactable::class, class_uses($interactor), true)) {
                 throw new Exception("Class {$interactor} must use the Interactable trait");
             }
 

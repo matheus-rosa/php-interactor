@@ -13,7 +13,7 @@ final class OrganizableTest extends TestCase
 {
     public function testOrganizeWithValidInteractors()
     {
-        $class = new class {
+        $class = new class() {
             use Organizable;
 
             protected function organize()
@@ -34,9 +34,9 @@ final class OrganizableTest extends TestCase
     public function testOrganizeWithInvalidInteractor()
     {
         $this->expectException(\Exception::class);
-        $this->expectExceptionMessage('Class ' . InvalidInteractor::class . ' must use the Interactable trait');
+        $this->expectExceptionMessage('Class '.InvalidInteractor::class.' must use the Interactable trait');
 
-        $class = new class {
+        $class = new class() {
             use Organizable;
 
             protected function organize()

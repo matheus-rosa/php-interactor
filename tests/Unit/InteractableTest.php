@@ -10,7 +10,7 @@ final class InteractableTest extends TestCase
 {
     public function testExecute()
     {
-        $class = new class {
+        $class = new class() {
             use Interactable;
 
             protected function execute(Context $context)

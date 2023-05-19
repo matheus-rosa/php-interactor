@@ -8,8 +8,10 @@ trait Executor
 {
     /**
      * @param $params
-     * @return Context
+     *
      * @throws Exception
+     *
+     * @return Context
      */
     public static function call($params = [])
     {
@@ -38,6 +40,7 @@ trait Executor
 
     /**
      * @param Context $context
+     *
      * @return null
      */
     protected function around(Context $context)
@@ -47,6 +50,7 @@ trait Executor
 
     /**
      * @param Context $context
+     *
      * @return void
      */
     protected function before(Context $context)
@@ -57,6 +61,7 @@ trait Executor
 
     /**
      * @param Context $context
+     *
      * @return void
      */
     protected function after(Context $context)
