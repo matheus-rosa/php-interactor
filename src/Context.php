@@ -45,6 +45,8 @@ class Context
      */
     public function errors()
     {
+        echo 'diff test';
+        echo 'on github';
         return $this->errors;
     }
 
