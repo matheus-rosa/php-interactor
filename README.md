@@ -23,6 +23,12 @@ heavy job for you?
 By giving a chance to this library you will find yourself creating straight forward and maintainable services while adopting a conventional pattern among them.
 I assure you that you will save some considerable time. Give it a shot! :)
 
+## Installation
+
+```shell
+composer require matheus-rosa/php-interactor 
+```
+
 ## Creating your first Interactor
 
 Say we're about to create a component responsible for saving a `User` model record:
